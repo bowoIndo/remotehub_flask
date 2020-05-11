@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>UMKM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+    <script src="{{url_for('static', filename='jquery-3.4.1.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+
+    <style>
+        .bg-gradient-primary {
+            background-color: #4e73df;
+            background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <!-- <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div> -->
+                                    <form class="user" id="form_login" >
+                                        <div class="form-group">
+                                            <input required type="email" class="form-control form-control-user"
+                                                id="email" name="email" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input required type="password" class="form-control form-control-user"
+                                                id="password" name="password" placeholder="Password">
+                                        </div>
+
+
+                                        <button type="button"
+                                            class="control-daftar control btn btn-primary btn-user btn-block"
+                                            id="tombol_masuk">
+                                            Masuk
+                                        </button>
+
+                                        <button type="button"
+                                            class="control-daftar control btn btn-success btn-user btn-block"
+                                            id="tombol_daftar">
+                                            Daftar
+                                        </button>
+
+                                        <button type="button"
+                                            class="control-daftar control btn btn-warning btn-user btn-block"
+                                            id="tombol_lupa_password">
+                                            Lupa Password
+                                        </button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

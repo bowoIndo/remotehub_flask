@@ -1,0 +1,136 @@
+{% include 'header.html'%}
+
+<script>
+    $(document).ready(function () {
+        $("#jenis_umkm").val('{{ pengusaha["jenis_umkm_id"] }}');
+        $("#jenis_umkm_detil").val('{{ pengusaha["child_jenis_umkm_id"] }}');
+    });
+</script>
+
+<br>
+<div class="container">
+    <button type="button" id="tombol_logout" class="btn btn-info float-right">Logout</button>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#map">Map</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#profile">Profile</a>
+        </li>
+        {% if is_admin == True %}
+            <li class="nav-item">
+                <a class="nav-link " data-toggle="tab" id="menu_list_user" href="#list_user">List User</a>
+            </li>
+        {% endif %}
+        <!-- <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#ganti_password">Ganti Password</a>
+        </li> -->
+    </ul>
+    <br>
+    <div class="tab-content">
+        <div class="tab-pane container active" id="map">
+            {% include 'gmap.html'%}
+        </div>
+
+        <div class="tab-pane container " id="profile">
+            <form action="{{ url_for('simpan') }}" method="post">
+                <input type="hidden" id="id_pengusaha" name="id_pengusaha" value="{{ pengusaha['id'] }}">
+
+                {{select_jenis_umkm|safe}}
+
+                <div id="dropdown_update">
+                </div>
+                <script>
+                    param = {
+                        parent_id: '{{ pengusaha["jenis_umkm_id"] }}',
+                        parent_column: 'jenis_umkm_id',
+                        table: 'child_jenis_umkm',
+                        name: 'nama',
+                        select_name: 'jenis_umkm_detil',
+                        label: 'Jenis UMKM Detil:'
+                    }
+                    $("#dropdown_update").load('dropdown_update', param);
+                </script>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input readonly type="email" class="form-control" id="email" placeholder="Masukkan email"
+                        name="email" value="{{ pengusaha['email'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Usaha / Brand:</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama" name="nama"
+                        value="{{ pengusaha['nama'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Alamat Usaha:</label>
+                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan alamat" name="alamat"
+                        value="{{ pengusaha['alamat'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Cari PlaceID :</label>
+
+                    <button type="button" class="btn btn-info" id="cari_place_id"
+                        onclick="window.open('https://bangundigdaya.com/faq/index.html')">Cari PlaceID</button>
+
+                    <input type="text" class="form-control" id="place_id" placeholder="Masukkan maps place id"
+                        value="{{ pengusaha['place_id'] }}" name="place_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah_stok">Jumlah Stok:</label>
+                    <input type="number" class="form-control" id="jumlah_stok" placeholder="Masukkan jumlah stok"
+                        value="{{ pengusaha['jumlah_stok'] }}" name="jumlah_stok" required
+                        onkeypress="return isNumberKey(event)">
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Marketplace :</label>
+                    <input type="text" class="form-control" id="marketplace" placeholder="Masukkan marketplace"
+                        value="{{ pengusaha['marketplace'] }}" name="marketplace" required>
+
+                    <span class="keterangan" id="keterangan_marketplace">Tautan URL Marketplace, seperti Google
+                        Bisnisku, Instagram, Facebook, Tokopedia, Bukalapak (contoh: https://www...)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Whatsapp :</label>
+
+
+
+                    <!-- <input type="text" class="form-control" id="whatsapp" placeholder="Masukkan whatsapp" value="{{ pengusaha['whatsapp'] }}" name="whatsapp" required> -->
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="wa-addon">https://wa.me/62</span>
+                        </div>
+                        <input type="text" class="form-control" id="whatsapp" aria-describedby="wa-addon"
+                            value="{{ pengusaha['whatsapp'] }}" name="whatsapp">
+                    </div>
+
+
+                    <span class="keterangan" id="keterangan_whatsapp">Tautan URL WhatsApp (contoh:
+                        https://wa.me/62812xxxx)</span>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <br>
+
+            </form>
+        </div>
+
+        <div class="tab-pane container " id="list_user">
+
+        </div>
+
+        <div class="tab-pane container " id="ganti_password"></div>
+
+    </div>
+
+</div>
+
+
+{% include 'footer.html'%}

@@ -1,0 +1,105 @@
+{% include 'header.html'%}
+
+<button class="btn btn-primary" id="tombol_login" >Seller Login</button>
+
+<div id="map" style="width: 100%;height: 100%;" >
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcyzudenazr_agpHvowA0rc-Jv1unIg8A"></script>
+
+<script>
+    
+    var locations = {{ latlong|tojson }};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        zoomControl: true,
+        scaleControl: true,
+        center: new google.maps.LatLng(-6.175110, 106.865036),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        gestureHandling: "greedy"
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        icon = {
+            url: "static/images/"+locations[i]['file_pin'],
+            scaledSize: new google.maps.Size(50, 50), // scaled size
+        }
+
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i]['latitude'], locations[i]['longitude']),
+            map: map,
+            icon:icon
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(`
+                <table>
+                    <tr>
+                        <td>Nama Usaha / Brand</td>
+                        <td>:</td>
+                        <td>${locations[i]['nama']}</td>
+                    </tr>   
+                    <tr>
+                        <td>Jumlah Stock</td>
+                        <td>:</td>
+                        <td>${locations[i]['jumlah_stok']}</td>
+                    </tr>              
+                    <tr>
+                        <td colspan="3" >
+                            <a target="_blank" rel="noopener noreferrer" href="${locations[i]['marketplace']}">Marketplace Link</a>
+                        </td>
+
+                    </tr>              
+                    <tr>
+                        <td colspan="3" >
+                            <a target="_blank" rel="noopener noreferrer" href="${locations[i]['whatsapp']}">Whatsapp Link</a>
+                        </td>
+                    </tr>              
+
+                </table>
+                `);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+    var icon = {
+        url: "static/images/pin-user.png",
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+    }
+
+    var marker_current_location = new google.maps.Marker({
+        position: new google.maps.LatLng(0, 0),
+        map: map,
+        icon: icon
+    });
+
+</script>
+<div id="googleMap" style="width:100%;height:100%;"></div>
+
+<style>
+    html, body {margin: 0;height: 100%;overflow: hidden}
+
+    #tombol_login {
+        position: absolute;
+        z-index: 4;
+        margin-left: 208px;
+        margin-top: 11px;
+    }
+
+</style>
+
+<script>
+    $("#tombol_login").click(function () {
+        window.location = "login";
+    });
+</script>
+
+{% include 'footer.html'%}

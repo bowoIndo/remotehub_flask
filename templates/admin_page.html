@@ -1,0 +1,56 @@
+<table class="table  table-bordered table-hover" >
+    <thead>
+    <tr>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Alamat</th>
+        <th>Jenis UMKM</th>
+        <th>Detil Jenis UMKM</th>
+        <th>Place ID</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
+        <th>Password</th>
+        <th>Jumlah Stok</th>
+        <th>MarketPlace</th>
+        <th>WhatsApp</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+        {% for i in all_user %}
+        <tr>
+            <td>{{ i['nama'] }}</td>
+            <td>{{ i['email'] }}</td>
+            <td>{{ i['alamat'] }}</td>
+            <td>{{ i['jenis_umkm'] }}</td>
+            <td>{{ i['child_jenis_umkm'] }}</td>
+            <td>{{ i['place_id'] }}</td>
+            <td>{{ i['longitude'] }}</td>
+            <td>{{ i['latitude'] }}</td>
+            <td>{{ i['password'] }}</td>
+            <td>{{ i['jumlah_stok'] }}</td>
+            <td>{{ i['marketplace'] }}</td>
+            <td>{{ i['whatsapp'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Name               |Value            |
+-------------------|-----------------|
+id                 |13               |
+nama               |APA YA           |
+jenis_umkm_id      |1                |
+jenis_umkm         |Pangan           |
+child_jenis_umkm_id|2                |
+child_jenis_umkm   |Siap saji        |
+email              |yy@yy.com        |
+alamat             |None             |
+place_id           |None             |
+longitude          |0                |
+latitude           |0                |
+password           |yy@yy.com        |
+jumlah_stok        |12               |
+marketplace        |                 |
+whatsapp           |                 |
+file_pin           |pin-siap-saji.png| -->

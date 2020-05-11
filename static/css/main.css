@@ -1,0 +1,20 @@
+#tombol_locate {
+    position: absolute;
+    top: -65px;
+    left: 0px;
+    width: 42px;
+    cursor: pointer;
+}
+
+#place_id {
+    margin-top: 14px;
+}
+
+#cari_place_id {
+    margin-left: 15px;
+}
+
+.keterangan {
+    font-size: 12px;
+    color: red;
+  }
